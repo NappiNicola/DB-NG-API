@@ -2,6 +2,8 @@ package main.db_ng.dbngapi.services;
 
 import actions.AddRow;
 import actions.CreateTable;
+import actions.DeleteTable;
+import actions.GetAllTables;
 import db_class.Table;
 import operationsIO.IOFile;
 import org.json.JSONObject;
@@ -41,5 +43,13 @@ public class TableService {
 
     public List<String> getHeader(String tableName) {
         return utils.Utility.getColumnNames(tableName);
+    }
+
+    public boolean deleteTable(String tableName) {
+        return DeleteTable.deleteTable(tableName);
+    }
+
+    public List<String> getAllTables() {
+        return GetAllTables.listTables();
     }
 }
