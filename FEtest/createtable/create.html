@@ -61,41 +61,50 @@
     const responseOutput = document.getElementById('responseOutput');
 
     form.addEventListener('submit', async (event) => {
-        event.preventDefault();
+    event.preventDefault();
 
-        const tableName = document.getElementById('tableName').value.trim();
-        const headersRaw = document.getElementById('headers').value.trim();
+    const tableNameInput = document.getElementById('tableName');
+    const headersInput = document.getElementById('headers');
 
-        // Split headers by comma and clean whitespace
-        const headers = headersRaw.split(',')
-            .map(h => h.trim())
-            .filter(h => h.length > 0);
+    const tableName = tableNameInput.value.trim();
+    const headersRaw = headersInput.value.trim();
 
-        const payload = {
-            tableName,
-            headers
-        };
+    // Split headers by comma and clean whitespace
+    const headers = headersRaw.split(',')
+        .map(h => h.trim())
+        .filter(h => h.length > 0);
 
-        try {
-            const response = await fetch('http://localhost:8080/table/generate-table', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
+    const payload = {
+        tableName,
+        headers
+    };
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
+    try {
+        const response = await fetch('http://localhost:8080/table/generate-table', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
 
-            const data = await response.json();
-            responseOutput.textContent = JSON.stringify(data, null, 2);
-
-        } catch (error) {
-            responseOutput.textContent = 'Error: ' + error.message;
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    });
+
+        const data = await response.json();
+        responseOutput.textContent = JSON.stringify(data, null, 2);
+
+        // Qui svuoto i campi e quindi li "sbianco"
+        tableNameInput.value = '';
+        headersInput.value = '';
+
+    } catch (error) {
+        responseOutput.textContent = 'Error: ' + error.message;
+    }
+});
+
+
 </script>
 
 </body>
