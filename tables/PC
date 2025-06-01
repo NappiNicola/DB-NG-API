@@ -65,6 +65,35 @@
                     "value": "7"
                 }
             ]
+        },
+        {
+            "idRow": 2,
+            "params": [
+                {
+                    "dataName": "Brand",
+                    "value": "Samsung"
+                },
+                {
+                    "dataName": "Model",
+                    "value": "Book 3"
+                },
+                {
+                    "dataName": "Memory",
+                    "value": "512"
+                },
+                {
+                    "dataName": "RAM",
+                    "value": "16"
+                },
+                {
+                    "dataName": "Price",
+                    "value": "1000"
+                },
+                {
+                    "dataName": "Pieces",
+                    "value": "7"
+                }
+            ]
         }
     ],
     "tableName": "PC"

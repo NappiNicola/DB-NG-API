@@ -12,6 +12,8 @@ import java.util.List;
 import static misc.Misc.prettyJson;
 
 @RestController
+@RequestMapping("/table")
+@CrossOrigin(origins = "*")
 public class TableController {
 
     private final TableService tableService;

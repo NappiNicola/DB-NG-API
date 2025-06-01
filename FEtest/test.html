@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Visualizza Tabella</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+        #error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Tabella: PC</h2>
+<div id="error"></div>
+<table id="tableData"></table>
+
+<script>
+    fetch("http://localhost:8080/table/getTable?table=PC")
+        .then(response => {
+            if (!response.ok) throw new Error("Errore nella fetch");
+            return response.json();
+        })
+        .then(data => {
+            const headers = data.headers.columnNames;
+            const rows = data.rows;
+            const table = document.getElementById("tableData");
+
+            // Crea intestazione
+            const thead = table.createTHead();
+            const rowHead = thead.insertRow();
+            headers.forEach(h => {
+                const th = document.createElement("th");
+                th.textContent = h;
+                rowHead.appendChild(th);
+            });
+
+            // Crea corpo tabella
+            const tbody = table.createTBody();
+            rows.forEach(row => {
+                const tr = tbody.insertRow();
+                row.params.forEach(cell => {
+                    const td = tr.insertCell();
+                    td.textContent = cell.value;
+                });
+            });
+        })
+        .catch(err => {
+            document.getElementById("error").textContent = "Errore nel caricamento della tabella.";
+            console.error(err);
+        });
+</script>
+
+</body>
+</html>
