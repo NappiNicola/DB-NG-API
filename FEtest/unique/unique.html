@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BDMS - Home</title>
+  <link rel="stylesheet" href="unique.css" />
+  <script defer src="./unique.js"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <a href="#" class="nav-link active" data-target="home">Home</a>
+    <a href="#" class="nav-link" data-target="tables">Tabelle</a>
+    <a href="#" class="nav-link" data-target="create">Nuova Tabella</a>
+  </div>
+
+  <!-- SEZIONE HOME -->
+  <div id="home" class="section active">
+    <h1>Benvenuto nel BDMS</h1>
+    <p>Gestisci i tuoi database facilmente con questo sistema.</p>
+  </div>
+
+  <!-- SEZIONE TABELLE -->
+  <div id="tables" class="section">
+    <h2>Visualizza Tabelle</h2>
+
+    <table id="miniTable" style="display:none;">
+      <thead>
+        <tr>
+          <th>Nome Tabella</th>
+          <th>Azioni</th>
+        </tr>
+      </thead>
+      <tbody id="miniTableBody">
+        <!-- Dati dinamici -->
+      </tbody>
+    </table>
+
+    <select id="tableSelect" aria-label="Seleziona tabella"></select>
+    <button onclick="loadTable()">Carica</button>
+    <button onclick="refreshTable()">Refresh</button>
+
+    <div id="error" role="alert" aria-live="polite" style="color:red; margin-top:1rem;"></div>
+
+    <table id="tableData" aria-label="Dati tabella"></table>
+
+    <!-- FORM per aggiungere riga -->
+    <div id="addRowSection" style="margin-top: 2rem; max-width: 600px; background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+      <h3>Aggiungi riga alla tabella selezionata</h3>
+      <form id="addRowForm">
+        <label for="valuesInput">Valori (separati da virgola)</label>
+        <input type="text" id="valuesInput" placeholder='es: Opel,Corsa,1.3,Black' required />
+        <button type="submit">Aggiungi Riga</button>
+      </form>
+      <pre id="addRowResponse" style="margin-top: 1rem; background: #f4f4f4; padding: 0.5rem; border-radius: 4px;"></pre>
+    </div>
+
+  </div>
+
+  <!-- SEZIONE CREA -->
+  <div id="create" class="section">
+    <h1>Crea una Nuova Tabella</h1>
+    <p>Definisci nome e colonne della nuova tabella.</p>
+
+    <form id="tableForm">
+      <label for="tableName">Nome Tabella</label>
+      <input type="text" id="tableName" name="tableName" required placeholder="Customers" />
+
+      <label for="headers">Intestazioni (separate da virgola)</label>
+      <textarea id="headers" name="headers" required placeholder="Name,Surname,Age,Best_Phone,Best_Email,Language"></textarea>
+
+      <button type="submit">Genera Tabella</button>
+    </form>
+
+    <h2>Risposta dall'API</h2>
+    <pre id="responseOutput">In attesa della richiesta...</pre>
+  </div>
+
+</body>
+</html>
