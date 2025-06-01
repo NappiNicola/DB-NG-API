@@ -1,0 +1,71 @@
+{
+    "headers": {"columnNames": [
+        "Brand",
+        "Model",
+        "Memory",
+        "RAM",
+        "Price",
+        "Pieces"
+    ]},
+    "rows": [
+        {
+            "idRow": 0,
+            "params": [
+                {
+                    "dataName": "Brand",
+                    "value": "HP"
+                },
+                {
+                    "dataName": "Model",
+                    "value": "Pavilion"
+                },
+                {
+                    "dataName": "Memory",
+                    "value": "512"
+                },
+                {
+                    "dataName": "RAM",
+                    "value": "8"
+                },
+                {
+                    "dataName": "Price",
+                    "value": "650"
+                },
+                {
+                    "dataName": "Pieces",
+                    "value": "10"
+                }
+            ]
+        },
+        {
+            "idRow": 1,
+            "params": [
+                {
+                    "dataName": "Brand",
+                    "value": "Samsung"
+                },
+                {
+                    "dataName": "Model",
+                    "value": "Book 4"
+                },
+                {
+                    "dataName": "Memory",
+                    "value": "512"
+                },
+                {
+                    "dataName": "RAM",
+                    "value": "16"
+                },
+                {
+                    "dataName": "Price",
+                    "value": "1000"
+                },
+                {
+                    "dataName": "Pieces",
+                    "value": "7"
+                }
+            ]
+        }
+    ],
+    "tableName": "PC"
+}
