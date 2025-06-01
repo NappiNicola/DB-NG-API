@@ -52,7 +52,7 @@ public class TableController {
         if (!tables.isEmpty()) {
             apiResponseJSON.setSuccess(true);
             apiResponseJSON.setMessage("Successfully retrieved tables");
-            apiResponseJSON.setData(tables); // oppure listToJSON(tables)
+            apiResponseJSON.setData(tables);
         } else {
             apiResponseJSON.setSuccess(false);
             apiResponseJSON.setMessage("No tables found");
