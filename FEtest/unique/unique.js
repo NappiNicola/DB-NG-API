@@ -240,18 +240,21 @@ function updateMiniTable() {
       if (!confirmed) return;
 
       try {
-        const res = await fetch(`${BASE_URL}/table/deleteTable?table=${encodeURIComponent(tableName)}`);
-        const json = await res.json();
-        if (json.success) {
-          alert(`Tabella "${tableName}" eliminata.`);
-          fetchAllTables();
-        } else {
-          alert("Errore durante eliminazione tabella.");
-        }
-      } catch (err) {
-        alert("Errore durante eliminazione tabella.");
-        console.error(err);
-      }
+  const res = await fetch(`${BASE_URL}/table/delete?table=${encodeURIComponent(tableName)}`, {
+    method: 'DELETE'
+  });
+  const json = await res.json();
+  if (json.success) {
+    alert(`Tabella "${tableName}" eliminata.`);
+    fetchAllTables();
+  } else {
+    alert("Errore durante eliminazione tabella.");
+  }
+} catch (err) {
+  alert("Errore durante eliminazione tabella.");
+  console.error(err);
+}
+
     };
 
     tdActions.appendChild(btnLoad);
@@ -289,7 +292,7 @@ tableForm.addEventListener('submit', async (e) => {
   }
 
   try {
-    const res = await fetch(`${BASE_URL}/table/createTable`, {
+    const res = await fetch(`${BASE_URL}/table/generate-table`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ tableName, headers })
@@ -331,7 +334,7 @@ addRowForm.addEventListener('submit', async (e) => {
   const values = valuesRaw.split(',').map(v => v.trim());
 
   try {
-    const res = await fetch(`${BASE_URL}/table/insertRow`, {
+    const res = await fetch(`${BASE_URL}/table/add-row`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ tableName, values })
